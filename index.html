@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Неоновый Прыгун</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- Главное меню -->
+        <div id="main-menu" class="screen active">
+            <h1 class="neon-title">НЕОНОВЫЙ<br>ПРЫГУН</h1>
+            <div class="menu-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" id="menu-best">0</div>
+                    <div class="stat-label">Рекорд</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="menu-coins">0</div>
+                    <div class="stat-label">Монеты</div>
+                </div>
+            </div>
+            <button class="neon-btn" id="play-btn">ИГРАТЬ</button>
+            <button class="neon-btn secondary" id="shop-btn">МАГАЗИН</button>
+            <button class="neon-btn gold-btn" id="leaderboard-btn">🏆 РЕКОРДЫ</button>
+            <button class="neon-btn" id="music-toggle-btn">🎵 МУЗЫКА: ВКЛ</button>
+        </div>
+
+        <!-- Магазин -->
+        <div id="shop-screen" class="screen">
+            <h2 class="shop-title">МАГАЗИН</h2>
+            <div class="shop-coins" id="shop-balance">💰 0</div>
+            <div class="shop-items" id="shop-items"></div>
+            <button class="neon-btn back-btn" id="shop-back">НАЗАД</button>
+        </div>
+
+        <!-- Игровой экран -->
+        <div id="game-screen" class="screen">
+            <canvas id="gameCanvas"></canvas>
+            <div id="game-ui">
+                <div class="score-display">
+                    <div class="score-label">СЧЁТ</div>
+                    <div class="score-value" id="current-score">0</div>
+                </div>
+                <div class="coins-display">
+                    <div class="coin-icon">💰</div>
+                    <div class="coin-value" id="game-coins">0</div>
+                </div>
+            </div>
+            
+            <!-- Отображение места в рейтинге -->
+            <div id="ranking-display" class="ranking-display" style="display: none;">
+                <div class="ranking-title">🏆 МЕСТО В РЕЙТИНГЕ</div>
+                <div class="ranking-info">
+                    <span class="ranking-player" id="ranking-player-name">-</span>
+                    <span class="ranking-position" id="ranking-position">-</span>
+                </div>
+            </div>
+            
+            <!-- Обратный отсчёт -->
+            <div id="countdown-screen" class="countdown-overlay hidden">
+                <div class="countdown-number" id="countdown-number">3</div>
+                <div class="countdown-text" id="countdown-text">ГОТОВЬСЬ!</div>
+            </div>
+        </div>
+
+        <!-- Game Over -->
+        <div id="game-over" class="screen">
+            <h2 class="game-over-title">ИГРА ОКОНЧЕНА</h2>
+            <div class="results">
+                <div class="result-item">
+                    <span class="result-label">Счёт:</span>
+                    <span class="result-value" id="final-score">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Монет:</span>
+                    <span class="result-value coins" id="final-coins">0</span>
+                </div>
+                <div class="result-item best" id="best-result" style="display: none;">
+                    <span class="result-label">НОВЫЙ РЕКОРД!</span>
+                    <span class="result-value" id="best-score">0</span>
+                </div>
+            </div>
+            <button class="neon-btn gold-btn" id="watch-ad-continue-btn">▶️ ПРОДОЛЖИТЬ</button>
+            <button class="neon-btn gold-btn" id="watch-ad-btn"> X2 МОНЕТЫ</button>
+            <button class="neon-btn" id="retry-btn">ЕЩЁ РАЗ</button>
+            <button class="neon-btn secondary" id="menu-btn">МЕНЮ</button>
+        </div>
+
+        <!-- Пауза -->
+        <div id="pause-menu" class="screen">
+            <h2 class="neon-title" style="font-size: 48px;">ПАУЗА</h2>
+            <button class="neon-btn" id="resume-btn">ПРОДОЛЖИТЬ</button>
+            <button class="neon-btn secondary" id="quit-btn">В МЕНЮ</button>
+        </div>
+    </div>
+
+    <!-- Фоновая музыка -->
+    <audio id="bg-music" src="fon.mp3" loop></audio>
+
+    <script src="game.js"></script>
+</body>
+</html>
